@@ -7,7 +7,14 @@ var taskFormHandler= function(event) {
   event.preventDefault()
   var taskNameInput = document.querySelector("input[name='task-name']").value;//(input[class=tag]) allows targeting of HTML & allows user to enter whatever
   var taskTypeInput= document.querySelector("select[name='task-type']").value//targets the scrolldown for task type.
-    
+
+  // check if input values are empty strings
+if (!taskNameInput || !taskTypeInput) {
+  alert("You need to fill out the task form!");
+  return false;
+}  
+formEl.reset();//resets input placeholders after task is added.
+
   //package up data as an object
   var taskDataObj = {
     name: taskNameInput,
@@ -15,7 +22,7 @@ var taskFormHandler= function(event) {
   };
 
   //send it as an argument to createTaskEl
-  createTaskEl(taskDaraObj);
+  createTaskEl(taskDataObj);
 };
   var createTaskEl = function(taskDataObj){
     
